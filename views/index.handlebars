@@ -1,0 +1,66 @@
+<div class="container">
+  <h1 class="text-center">Eat The Burger!</h1>
+  <div id="well1" class="well">
+  <div class="row">
+
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4">
+  <h2>On the chopping block!</h2>
+
+  <ul>
+    {{#each burgers}}
+      {{#unless devoured}}
+      <li>
+        {{burger_name}}
+
+        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button class="btn btn-default" type="submit">Consume Burger</button>
+        </form>
+
+      </li>
+
+      {{/unless}}
+    {{/each}}
+  </ul>
+</div>
+<div class="col-sm-4">
+  <h2>Burgers Consumed</h2>
+
+  <ul>
+    {{#each burgers}}
+      {{#if devoured}}
+      <li>
+        {{burger_name}}
+
+        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="false">
+          <button class="btn btn-default" type="submit">Return</button>
+        </form>
+
+      </li>
+
+      {{/if}}
+    {{/each}}
+  </ul>
+</div>
+<div class="col-sm-2"></div>
+</div>
+</div>
+  <div id="well2" class="well">
+  <h2>Add Burger</h2>
+  <form action="burgers/new" method="POST">
+      <div>
+        <label for="burger">Name: </label>
+        <input type="text" name="burger_name" required>
+      </div>
+      <div>
+        <label for="eaten">Devoured?</label><br>
+        <input type="radio" name="devoured" value="0" checked="">Not just yet.. <br>
+        <input type="radio" name="devoured" value="1">Consumed <br>
+      </div>
+      <br>
+      <button class="btn btn-default" type="submit" name="button">Add Burger</button>
+  </form>
+</div>
+</div>
